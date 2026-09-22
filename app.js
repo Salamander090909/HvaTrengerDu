@@ -9,15 +9,12 @@ app.use(express.static("public"));
 
 const mongodb = mongoose.connect("mongodb://localhost:27017/HvaTrengerDu")
 
-<<<<<<< HEAD
 const User = require("./models/User")
 
 app.get("/", (req, res) => {
     res.render("index")
 })
-=======
 const Forslag = require('./models/Forslag');
->>>>>>> feacher/nav
 
 app.get("/login",(req, res) => {
     res.render("login")
