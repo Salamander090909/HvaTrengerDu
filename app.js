@@ -2,7 +2,7 @@ const express = require('express'); //importert express
 const argon2 = require('argon2');
 const mongoose = require('mongoose')
 
-const app = express(); //vi lager appen
+const app = express(); //vi lager appen git
 
 app.set("view engine", "ejs")
 app.use(express.urlencoded({extended: true}))
