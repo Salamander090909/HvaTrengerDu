@@ -7,7 +7,7 @@ app.set("view engine", "ejs")
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"));
 
-const mongodb = mongoose.connect("mongodb://localhost:27017/HvaTrengerDu")
+const mongodb = mongoose.connect("mongodb+srv://Salamander09:MAdWoRWLW87O7cMg@cluster0.9ajv5sh.mongodb.net/?appName=Cluster0")
 
 const Forslag = require('./models/Forslag');
 const User = require("./models/User")
