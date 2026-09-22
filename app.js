@@ -10,6 +10,11 @@ app.use(express.static("public"));
 const mongodb = mongoose.connect("mongodb://localhost:27017/HvaTrengerDu")
 
 const Forslag = require('./models/Forslag');
+const User = require("./models/User")
+
+app.get("/", (req, res) => {
+    res.render("index")
+})
 
 app.get("/login",(req, res) => {
     res.render("login")
