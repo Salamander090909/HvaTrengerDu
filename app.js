@@ -12,10 +12,6 @@ const mongodb = mongoose.connect("mongodb://localhost:27017/HvaTrengerDu")
 const Forslag = require('./models/Forslag');
 const User = require("./models/User")
 
-app.get("/", (req, res) => {
-    res.render("index")
-})
-
 app.get("/login",(req, res) => {
     res.render("login")
 })
@@ -60,8 +56,6 @@ app.post("/", async (req, res) => {
     await nyttForslag.save();
     res.redirect('/');
 });
-
-
 
 app.listen(4000, () => {
     console.log("http://localhost:4000")
