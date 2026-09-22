@@ -1,35 +1,28 @@
-const express = require('express'); //importert express
+const express = require('express');
 const argon2 = require('argon2');
 const mongoose = require('mongoose')
 
-const app = express(); //vi lager appen
-
+const app = express();
 app.set("view engine", "ejs")
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"));
 
-
 const mongodb = mongoose.connect("mongodb://localhost:27017/HvaTrengerDu")
 
-
-app.get("/", (req, res) => {
-    res.render("index")
-})
+const Forslag = require('./models/Forslag');
 
 app.get("/login",(req, res) => {
     res.render("login")
 })
 
-
 app.get("/registrer",(req, res) => {
     res.render("registrer")
 })
 
-
-app.post("/", (req, res) => {
-    console.log(req.body);
-    const {spørsmål} = req.body;
-})
+app.get("/", async (req, res) => {
+    const alleForslag = await Forslag.find().sort({ dato: -1 });
+    res.render("index", { alleForslag });
+});
 
 app.post("/login", (req, res) => {
     const {email, passord} = req.body;
@@ -57,9 +50,11 @@ app.post("/registrer", async (req, res) => {
     }
 })
 
-
-
-
+app.post("/", async (req, res) => {
+    const nyttForslag = new Forslag({ tekst: req.body.forslag });
+    await nyttForslag.save();
+    res.redirect('/');
+});
 
 
 

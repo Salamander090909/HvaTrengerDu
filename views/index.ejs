@@ -5,37 +5,24 @@
 
     <h1>Hva trenger du for at skolehverdagen skal bli litt bedre?</h1>
 
-    <section class="middle">
-        <form action="" method="post">
-            <label for="">Skriv inn forslag</label>
-            <input type="text" name="forslag" id="forslag" placeholder="piss overalt isteden for doen">
-            <button type="submit">send in</button>
-        </form>    
-    </section>
+   <section class="middle">
+  <form action="" method="post">
+    <label for="forslag">Skriv inn forslag</label>
+    <input type="text" name="forslag" id="forslag" placeholder="piss overalt isteden for doen">
+    <button type="submit">send in</button>
+  </form>
+</section>
 
-    
-    <h2>Skole forslagene</h2>
+<h2>Skole forslagene</h2>
 
-    <section>
-        <div class="skole">
-            <div class="komment">
-                <p>
-                    Lorem ipsum dolor sit amet.
-                </p>
-                        
-            </div>
-            <div class="komment">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing.
-                </p>
-            </div>
-            <div class="komment">
-                <p>
-                    Lorem ipsum dolor sit.
-                </p>
-            </div>
-        </div>
-    </section>
-
+<section>
+  <div class="skole">
+    <% alleForslag.forEach(function(f) { %>
+      <div class="komment">
+        <p><%= f.tekst %></p>
+      </div>
+    <% }); %>
+  </div>
+</section>
 
 </body>
