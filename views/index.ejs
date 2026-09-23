@@ -3,26 +3,48 @@
 <body>
 <%- include("./partials/nav.ejs") %>
 
+<main class="innhold">
+
+  
+  <section class="rightTextBox">
+      
     <h1>Hva trenger du for at skolehverdagen skal bli litt bedre?</h1>
+      
+    <form action="" method="post">
+      <label for="forslag">Skriv inn forslag</label>
+      <input type="text" name="forslag" id="forslag" placeholder="">
+      <button type="submit">send in</button>
+    </form>
+    
+    <h2>Skole forslagene</h2>
+    
+  </section>
 
-   <section class="middle">
-  <form action="" method="post">
-    <label for="forslag">Skriv inn forslag</label>
-    <input type="text" name="forslag" id="forslag" placeholder="piss overalt isteden for doen">
-    <button type="submit">send in</button>
-  </form>
-</section>
-
-<h2>Skole forslagene</h2>
-
-<section>
-  <div class="skole">
-    <% alleForslag.forEach(function(f) { %>
-      <div class="komment">
+<div class="skole">
+  <% alleForslag.forEach(function(f) { %>
+    <div class="komment">
         <p><%= f.tekst %></p>
-      </div>
-    <% }); %>
-  </div>
-</section>
 
+        <div class="feedFeature">
+          <div class="person">
+            <% if (f.bruker) { %>
+              <p><%= f.bruker.kjønn%></p>
+              <p><%= f.bruker.alder%></p>
+              <% } else { %>
+                <p>Gjest</p>
+                <% } %>
+              </div>
+              <div class="commentSection">
+                <p>Comment</p>
+              </div>
+              <div class="like">
+                <p>like</p>
+              </div>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        
+</main>
+        
 </body>
