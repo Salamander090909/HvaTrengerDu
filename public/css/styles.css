@@ -1,31 +1,103 @@
 :root {
     --Aksent1Color: #D9B8A3;
     --mainBackground: #EDF1F4;
+
+    --feedWidth: 100%;
+    --feedHight: 8rem;
+
+    --featureWidth: 20rem;
+    --userTextPaddingTop: 1rem;
+
 }
 
 body {
     background-color: var(--mainBackground);
-    margin: 0;
+    margin: 0 0 0.5rem auto;
+}
+
+.rightTextBox {
+    width: var(--feedWidth);
+    margin-left: auto;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
 }
 
 nav ul {
-    display: flex;
-    justify-content: space-around;
-}
-
-nav li {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-nav a {
-    color: black;
+nav li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #333;
     text-decoration: none;
-    font-size: 1rem;
+    border-radius: 1rem;
 }
+
+nav li a:hover {
+  background: white;
+  color: #333;
+}
+
 
 nav {
+    position: fixed;
     top: 0;
-    width: 100%;
-    height: 4rem;
+    left: 0;
+    width: 15%;
+    height: 100vh;
     background-color: var(--Aksent1Color);
+    padding: 1.5rem 1rem;
+    box-sizing: border-box;
+}
+
+.innhold {
+    margin-left: 15%;
+    width: 85%;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.komment:nth-child(5n+1) { background-color: #f4d6cc; }
+.komment:nth-child(5n+2) { background-color: #cfe3e8; }
+.komment:nth-child(5n+3) { background-color: #d9e8d0; }
+.komment:nth-child(5n+4) { background-color: #e6d9ef; }
+.komment:nth-child(5n+5) { background-color: #f7e6c4; }
+
+.komment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: var(--feedWidth);
+    min-height: var(--feedHight);
+    padding: 1rem 1.5rem;
+    margin: 0 0 0.5rem auto;
+    color: black;
+    border-radius: 1.5rem;
+}
+
+.komment > p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: black;
+}
+
+.feedFeature {
+    display: grid;
+    grid-template-columns: 10rem 8rem 8rem;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    width: 30%;
+}
+
+.feedFeature p {
+    margin: 0;
+}
+
+.person {
+    display: flex;
+    gap: 0.5rem;  
 }
