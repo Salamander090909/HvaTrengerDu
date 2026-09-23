@@ -2,10 +2,11 @@
     --Aksent1Color: #D9B8A3;
     --mainBackground: #EDF1F4;
 
-    --feedWidth: 80%;
+    --feedWidth: 70%;
     --feedHight: 8rem;
 
     --featureWidth: 20rem;
+    --userTextPaddingTop: 1rem;
 
 }
 
@@ -37,33 +38,44 @@ nav {
     background-color: var(--Aksent1Color);
 }
 
-.komment {
-    border: none;
-    border-radius: 12px;
-    width: 60%;
-    margin-left: auto;
-    width: var(--feedWidth);
-    margin-bottom: 2rem;
-    height: var(--feedHight);
-    text-align: center;
-}
-
 .komment:nth-child(5n+1) { background-color: #f4d6cc; }
 .komment:nth-child(5n+2) { background-color: #cfe3e8; }
 .komment:nth-child(5n+3) { background-color: #d9e8d0; }
 .komment:nth-child(5n+4) { background-color: #e6d9ef; }
 .komment:nth-child(5n+5) { background-color: #f7e6c4; }
 
+.komment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: var(--feedWidth);
+    min-height: var(--feedHight);
+    padding: 1rem 1.5rem;
+    margin: 0 0 0.5rem auto;
+    color: black;
+    border-radius: 1.5rem;
+}
+
+.komment > p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: black;
+}
 
 .feedFeature {
-    display: flex;
-    width: var(--featureWidth);
-    justify-content: space-between;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 10rem 8rem 8rem;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    width: 30%;
+}
+
+.feedFeature p {
+    margin: 0;
 }
 
 .person {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.5rem;  
 }
-
