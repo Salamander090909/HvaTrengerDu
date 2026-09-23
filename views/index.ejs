@@ -1,5 +1,28 @@
 <%-include("partials/head.ejs")%>
 
 <body>
-    <h1>hei</h1>
+<%- include("./partials/nav.ejs") %>
+
+    <h1>Hva trenger du for at skolehverdagen skal bli litt bedre?</h1>
+
+   <section class="middle">
+  <form action="" method="post">
+    <label for="forslag">Skriv inn forslag</label>
+    <input type="text" name="forslag" id="forslag" placeholder="piss overalt isteden for doen">
+    <button type="submit">send in</button>
+  </form>
+</section>
+
+<h2>Skole forslagene</h2>
+
+<section>
+  <div class="skole">
+    <% alleForslag.forEach(function(f) { %>
+      <div class="komment">
+        <p><%= f.tekst %></p>
+      </div>
+    <% }); %>
+  </div>
+</section>
+
 </body>
