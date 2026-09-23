@@ -5,6 +5,8 @@
     --feedWidth: 80%;
     --feedHight: 8rem;
 
+    --featureWidth: 20rem;
+
 }
 
 body {
@@ -43,6 +45,7 @@ nav {
     width: var(--feedWidth);
     margin-bottom: 2rem;
     height: var(--feedHight);
+    text-align: center;
 }
 
 .komment:nth-child(5n+1) { background-color: #f4d6cc; }
@@ -51,4 +54,16 @@ nav {
 .komment:nth-child(5n+4) { background-color: #e6d9ef; }
 .komment:nth-child(5n+5) { background-color: #f7e6c4; }
 
+
+.feedFeature {
+    display: flex;
+    width: var(--featureWidth);
+    justify-content: space-between;
+    text-align: center;
+}
+
+.person {
+    display: flex;
+    gap: 0.5rem;
+}
 
