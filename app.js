@@ -14,7 +14,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-const mongodb = mongoose.connect("mongodb+srv://Salamander09:MAdWoRWLW87O7cMg@cluster0.9ajv5sh.mongodb.net/?appName=Cluster0")
+const mongodb = mongoose.connect("mongodb+srv://Salamander09:MAdWoRWLW87O7cMg@cluster0.9ajv5sh.mongodb.net/?appName=Cluster0", {dbName: "hvatrengerdu"})
 
 const Forslag = require('./models/Forslag');
 const User = require("./models/User")
