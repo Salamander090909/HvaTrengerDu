@@ -1,6 +1,10 @@
 :root {
     --Aksent1Color: #D9B8A3;
     --mainBackground: #EDF1F4;
+
+    --feedWidth: 80%;
+    --feedHight: 8rem;
+
 }
 
 body {
@@ -11,6 +15,7 @@ body {
 nav ul {
     display: flex;
     justify-content: space-around;
+    margin: 0;
 }
 
 nav li {
@@ -29,3 +34,21 @@ nav {
     height: 4rem;
     background-color: var(--Aksent1Color);
 }
+
+.komment {
+    border: none;
+    border-radius: 12px;
+    width: 60%;
+    margin-left: auto;
+    width: var(--feedWidth);
+    margin-bottom: 2rem;
+    height: var(--feedHight);
+}
+
+.komment:nth-child(5n+1) { background-color: #f4d6cc; }
+.komment:nth-child(5n+2) { background-color: #cfe3e8; }
+.komment:nth-child(5n+3) { background-color: #d9e8d0; }
+.komment:nth-child(5n+4) { background-color: #e6d9ef; }
+.komment:nth-child(5n+5) { background-color: #f7e6c4; }
+
+

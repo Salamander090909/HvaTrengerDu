@@ -20,6 +20,23 @@
     <% alleForslag.forEach(function(f) { %>
       <div class="komment">
         <p><%= f.tekst %></p>
+
+        <div class="feedFeature">
+          <div class="person">
+            <% if (f.bruker) { %>
+              <%= f.bruker.kjønn%>
+              <%= f.bruker.alder%>
+            <% } else { %>
+              <p>Ukjent</p>
+            <% } %>
+          </div>
+          <div class="commentSection">
+
+          </div>
+          <div class="like">
+
+          </div>
+        </div>
       </div>
     <% }); %>
   </div>
