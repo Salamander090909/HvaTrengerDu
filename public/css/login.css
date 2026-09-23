@@ -49,6 +49,7 @@ input {
     width: var(--inputWidth);
     border-radius: var(--inputBorderRadius);
     border: 1px solid black;
+    padding-left: 0.7rem;
 }
 
 form button {
@@ -74,4 +75,5 @@ select {
     height: var(--inputheight);
     width: calc(--inputWidth / 2);
     background-color: white;
+    padding-left: 0.7rem;
 }
