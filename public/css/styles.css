@@ -62,11 +62,11 @@ nav {
     box-sizing: border-box;
 }
 
-.komment:nth-child(5n+1) { background-color: #f4d6cc; }
-.komment:nth-child(5n+2) { background-color: #cfe3e8; }
-.komment:nth-child(5n+3) { background-color: #d9e8d0; }
-.komment:nth-child(5n+4) { background-color: #e6d9ef; }
-.komment:nth-child(5n+5) { background-color: #f7e6c4; }
+.post:nth-child(5n+2) .komment { background-color: #cfe3e8; }
+.post:nth-child(5n+1) .komment { background-color: #f4d6cc; }
+.post:nth-child(5n+3) .komment { background-color: #d9e8d0; }
+.post:nth-child(5n+4) .komment { background-color: #e6d9ef; }
+.post:nth-child(5n+5) .komment { background-color: #f7e6c4; }
 
 .komment {
     display: flex;
@@ -75,10 +75,11 @@ nav {
     max-width: var(--feedWidth);
     min-height: var(--feedHight);
     padding: 1rem 1.5rem;
-    margin: 0 0 0.5rem auto;
+    margin: 1rem 0 0 auto;
     color: black;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
 }
+
 
 .komment > p {
     margin: 0;
@@ -89,11 +90,18 @@ nav {
 
 .feedFeature {
     display: grid;
-    grid-template-columns: 10rem 8rem 8rem;
+    grid-template-columns: 8rem max-content max-content;
+    gap: 1.5rem;
     align-items: center;
     font-size: 0.8rem;
     opacity: 0.8;
-    width: 30%;
+}
+
+.kommentarForm label {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
 }
 
 .feedFeature p {
@@ -102,8 +110,8 @@ nav {
 
 .person {
     display: flex;
-    gap: 0.5rem;  
-    font-family: --mainFont;
+    gap: 1.5rem; 
+    font-family: var(--commentFont);
     font-weight: bold;
 }
 
@@ -145,6 +153,81 @@ form button {
 form button:hover {
     scale: 1.05;
 }
+
+kommentarListe ul {
+    list-style: none;
+}
+
+
+.post {
+    margin-bottom: 0.75rem;
+}
+
+.post .komment {
+    margin-bottom: 0;
+}
+
+.post.aapen .komment {
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.kommenterBtn {
+    background: none;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.8rem;
+    font: var(--commentFont);
+    text-align: left;
+}
+
+.kommenterBtn:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.commentSection {
+    background: white;
+    border-radius: 0 0 1rem 1rem;
+    padding: 1rem 1.5rem;
+    font-family: var(--commentFont);
+}
+
+.kommentarListe {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.kommentarListe li {
+    background: var(--mainBackground);
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.kommentarForm {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.kommentarForm input {
+    flex: 1;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    font: var(--commentFont);
+}
+
+.kommentarForm button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    background: white;
+}
+
+
 
 
 
