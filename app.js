@@ -81,15 +81,10 @@ app.post("/", async (req, res) => {
     });
     await nyttForslag.save();
     res.redirect('/');
+    res.redirect("/login")
 });
 
-        console.log(user);
 
-        console.log(hash);
-
-        res.redirect("/login")
-    }
-})
 
 app2.post("/", async (req, res) => {
     const nyttForslag = new Forslag({ tekst: req.body.forslag });
