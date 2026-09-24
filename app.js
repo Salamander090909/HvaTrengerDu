@@ -81,22 +81,18 @@ app.post("/", async (req, res) => {
     });
     await nyttForslag.save();
     res.redirect('/');
+
 });
+res.redirect("/login")
 
-        console.log(user);
+    
 
-        console.log(hash);
-
-        res.redirect("/login")
-    }
-})
-
-app2.post("/", async (req, res) => {
+app.post("/", async (req, res) => {
     const nyttForslag = new Forslag({ tekst: req.body.forslag });
     await nyttForslag.save();
     res.redirect('/');
 });
 
-app2.listen(4000, () => {
+app.listen(4000, () => {
     console.log("http://localhost:4000")
 }); //vi kjører appen på port 4000
