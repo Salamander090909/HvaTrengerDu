@@ -82,16 +82,27 @@ app.post("/", async (req, res) => {
     await nyttForslag.save();
     res.redirect('/');
 
+    res.redirect("/login")
 });
-res.redirect("/login")
-
-    
 
 app.post("/", async (req, res) => {
-    const nyttForslag = new Forslag({ tekst: req.body.forslag });
+    const nyttForslag = new Forslag({ 
+        tekst: req.body.forslag,
+        bruker: req.session.userId
+    });
     await nyttForslag.save();
     res.redirect('/');
 });
+
+app.post("/kommenter/:id", async (req, res) => {
+    await Forslag.updateOne(
+        { _id: req.params.id },
+        { $push: { kommentarer: { tekst: req.body.kommentarTekst } } }
+    );
+    res.redirect('/');
+});
+
+
 
 app.listen(4000, () => {
     console.log("http://localhost:4000")
