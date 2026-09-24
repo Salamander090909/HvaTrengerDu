@@ -13,7 +13,7 @@
           <label for="forslag">Skriv inn forslag</label>
           <input type="text" name="forslag" id="forslag" placeholder="">
         </div>
-        <button type="submit">send in</button>
+        <button type="submit">send inn</button>
       </form>
     </section>
 
@@ -27,27 +27,29 @@
             <div class="feedFeature">
               <div class="person">
                 <% if (f.bruker) { %>
-                  <p><%= f.bruker.kjønn %></p>
-                  <p><%= f.bruker.alder %></p>
+                  <p><%= f.bruker.kjønn %>, <%= f.bruker.alder %></p>
                 <% } else { %>
                   <p>Gjest</p>
                 <% } %>
               </div>
 
-              <button type="button" class="kommenterBtn">
-                kommenter
-              </button>
+              <button type="button" class="kommenterBtn">kommenter</button>
 
-              <div class="like">
-                <p>like</p>
-              </div>
+              <div class="like"><p>like</p></div>
             </div>
           </div>
 
           <div class="commentSection" id="kommentarer-<%= f._id %>" hidden>
             <ul class="kommentarListe">
               <% f.kommentarer.forEach(function(k) { %>
-                <li><%= k.tekst %></li>
+                <li>
+                  <% if (k.bruker) { %>
+                    <p><%= k.bruker.kjønn %>, <%= k.bruker.alder %>:</p>
+                  <% } else { %>
+                    <p>Gjest:</p>
+                  <% } %>
+                  <%= k.tekst %>
+                </li>
               <% }); %>
             </ul>
 
