@@ -81,17 +81,29 @@ app.post("/", async (req, res) => {
     });
     await nyttForslag.save();
     res.redirect('/');
+
     res.redirect("/login")
 });
 
-
-
-app2.post("/", async (req, res) => {
-    const nyttForslag = new Forslag({ tekst: req.body.forslag });
+app.post("/", async (req, res) => {
+    const nyttForslag = new Forslag({ 
+        tekst: req.body.forslag,
+        bruker: req.session.userId
+    });
     await nyttForslag.save();
     res.redirect('/');
 });
 
-app2.listen(4000, () => {
+app.post("/kommenter/:id", async (req, res) => {
+    await Forslag.updateOne(
+        { _id: req.params.id },
+        { $push: { kommentarer: { tekst: req.body.kommentarTekst } } }
+    );
+    res.redirect('/');
+});
+
+
+
+app.listen(4000, () => {
     console.log("http://localhost:4000")
 }); //vi kjører appen på port 4000
