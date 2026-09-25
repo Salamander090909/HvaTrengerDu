@@ -4,11 +4,11 @@
 const banneord = [
   // norske banneord
   "faen", "fanden", "jævel", "jævla", "jævlig", "helvete", "hælvete",
-  "satan", "dritt", "føkk", "møkkamann",
+  "satan", "dritt", "føkk", "møkkamann", "smårips", "storerips", "mellomrips", "jwl", "snabel", "snabelen", "anus",
 
   // kropp og seksuelt
   "fitte", "kuk", "pikk", "pule", "rasshøl", "rasshol", "ræva", "rævpuler",
-  "hestkuk", "kødd",
+  "hestkuk", "kødd", "pupper", "rumpe", "tits", "boobs", "sex", "knulle", "neger",
 
   // nedsettende om kvinner
   "hore", "horunge", "ludder", "tispe", "hurpe",
