@@ -41,21 +41,26 @@
                       <p>Gjest</p>
                       <% } %>
                 </div>
-                <div class="commentSection" style="display: none;">
-                  <form action="/kommenter/<%= f._id %>" method="post">
-                    <input type="text" name="kommentarTekst" placeholder="Skriv en komment">
-                    <button type="submit">Send</button>
-                  </form>
+                <div>
+                  <div class="commentSection" style="display: none;">
+                    <form action="/kommenter/<%= f._id %>" method="post">
+                      <input type="text" name="kommentarTekst" placeholder="Skriv en komment">
+                      <button type="submit">Send</button>
+                    </form>
+  
+                    <% f.kommentarer.forEach(function(k) { %>
+                      <p>
+                        <%= k.tekst %>
+                      </p>
+                      <% }); %>
+                  </div>
+                  <button type="button" class="kommenterBtn">kommenter</button>
 
-                  <% f.kommentarer.forEach(function(k) { %>
-                    <p>
-                      <%= k.tekst %>
-                    </p>
-                    <% }); %>
                 </div>
+                
+                
                 <div class="like">
                   <p>like</p>
-                  <button type="button" class="kommenterBtn">kommenter</button>
                 </div>
               </div>
             </div>
