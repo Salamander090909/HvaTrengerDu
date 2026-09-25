@@ -81,8 +81,6 @@ app.post("/", async (req, res) => {
     });
     await nyttForslag.save();
     res.redirect('/');
- 
-    res.redirect("/login")
 });
  
 app.post("/", async (req, res) => {
