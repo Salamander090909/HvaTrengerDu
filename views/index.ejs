@@ -41,7 +41,8 @@
                         <% } %>
                   </div>
 
-                  <button type="button" class="kommenterBtn">kommenter</button>
+                  <button type="button" class="kommenterBtn">kommenter(<span class="kommentarCount"><%= f.kommentarer.length %></span>)</button>
+                  
 
 
                   <form action="/like" method="post">
