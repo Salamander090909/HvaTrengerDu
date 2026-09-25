@@ -69,6 +69,10 @@ nav {
     box-sizing: border-box;
 }
 
+.post {
+    max-width: 33%;
+}
+
 .post:nth-child(5n+2) .komment { background-color: #cfe3e8; }
 .post:nth-child(5n+1) .komment { background-color: #f4d6cc; }
 .post:nth-child(5n+3) .komment { background-color: #d9e8d0; }
