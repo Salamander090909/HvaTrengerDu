@@ -212,11 +212,11 @@ kommentarListe ul {
 }
 
 .kommentarForm input {
-    padding: 0 0.8rem;
+    padding: 1rem 0.8rem;
     border: 1px solid #ccc;
     border-radius: 1rem;
     font: var(--commentFont);
-    width: 60%;
+    width: 55%;
 }
 
 .kommentarForm button {
