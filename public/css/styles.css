@@ -8,6 +8,7 @@
     --featureWidth: 20rem;
     --userTextPaddingTop: 1rem;
     --mainFont: font-family: "Montserrat", "Gotham", Arial, sans-serif;
+    --commentFont: "Montserrat", "Gotham", Arial, sans-serif;
 
 }
 
@@ -22,6 +23,13 @@ body {
     margin-bottom: 4rem;
     margin-top: 4rem;
 }
+
+.skole {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+}
+
 
 nav ul {
     list-style: none;
@@ -61,11 +69,11 @@ nav {
     box-sizing: border-box;
 }
 
-.komment:nth-child(5n+1) { background-color: #f4d6cc; }
-.komment:nth-child(5n+2) { background-color: #cfe3e8; }
-.komment:nth-child(5n+3) { background-color: #d9e8d0; }
-.komment:nth-child(5n+4) { background-color: #e6d9ef; }
-.komment:nth-child(5n+5) { background-color: #f7e6c4; }
+.post:nth-child(5n+2) .komment { background-color: #cfe3e8; }
+.post:nth-child(5n+1) .komment { background-color: #f4d6cc; }
+.post:nth-child(5n+3) .komment { background-color: #d9e8d0; }
+.post:nth-child(5n+4) .komment { background-color: #e6d9ef; }
+.post:nth-child(5n+5) .komment { background-color: #f7e6c4; }
 
 .komment {
     display: flex;
@@ -74,25 +82,32 @@ nav {
     max-width: var(--feedWidth);
     min-height: var(--feedHight);
     padding: 1rem 1.5rem;
-    margin: 0 0 0.5rem auto;
     color: black;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
 }
+
 
 .komment > p {
     margin: 0;
     font-size: 1.1rem;
     color: black;
-    font-family: "Montserrat", "Gotham", Arial, sans-serif;
+    font-family: var(--commentFont);
 }
 
 .feedFeature {
     display: grid;
-    grid-template-columns: 10rem 8rem 8rem;
+    grid-template-columns: 8rem max-content max-content;
+    gap: 1.5rem;
     align-items: center;
     font-size: 0.8rem;
     opacity: 0.8;
-    width: 30%;
+}
+
+.kommentarForm label {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
 }
 
 .feedFeature p {
@@ -101,8 +116,8 @@ nav {
 
 .person {
     display: flex;
-    gap: 0.5rem;  
-    font-family: --mainFont;
+    gap: 1.5rem; 
+    font-family: var(--commentFont);
     font-weight: bold;
 }
 
@@ -125,7 +140,157 @@ nav {
 
 .forslag input {
     border: 1px solid black;
-    width: 20%;
+    width: 30rem;
     padding: 10px;
 }
 
+form button {
+    margin-top: 1rem;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 7%;
+    font-size: 15px;
+    font-family: var(--commentFont);
+    transition: 0.4s;
+}
+
+form button:hover {
+    scale: 1.05;
+}
+
+kommentarListe ul {
+    list-style: none;
+}
+
+.post.aapen .komment {
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.kommenterBtn {
+    background: none;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.8rem;
+    font: var(--commentFont);
+    text-align: left;
+}
+
+.kommenterBtn:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.commentSection {
+    background: white;
+    border-radius: 0 0 1rem 1rem;
+    padding: 1rem 1.5rem;
+    font-family: var(--commentFont);
+}
+
+.kommentarListe {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.kommentarListe li {
+    background: var(--mainBackground);
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.kommentarForm {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.kommentarForm input {
+    flex: 1;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    font: var(--commentFont);
+}
+
+.kommentarForm button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    background: white;
+}
+
+
+
+@media (max-width: 1100px) {
+    form {
+        display: flex;
+    }
+
+    form button {
+        margin-left: 2rem;
+        width: 5rem;
+    }
+
+    forslag input {
+        width: 20rem;
+    }
+}
+
+@media (max-width: 900px) {
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    form button {
+        margin-left: 0;
+        width: 30%;
+    }
+
+    .forslag input {
+        width: 20rem;
+    }
+
+    .komment > p {
+        font-size: 0.9rem;
+    }
+
+    .rightTextBox {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .rightTextBox h1 {
+        font-size: 1.5rem
+    }
+
+    form button {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 550px) {
+   .wrapper {
+     display: flex;
+     min-height: 100vh;
+   }
+   .nav {
+     width: 75px;  
+     flex-shrink: 0;
+   }
+   .main {
+     width: 80%;     
+   }
+
+    .feedFeature {
+        grid-template-columns: 1fr auto auto;
+        gap: 1rem;
+        width: 100%;
+    }
+}
