@@ -103,26 +103,23 @@ app.post("/kommenter/:id", blokkerBanneord("kommentarTekst"), async (req, res) =
 });
 
 app.post("/like", async (req, res) => {
-    console.log(req.body);
-
     const {like} = req.body;
-
     const forslag = await Forslag.findById(like);
-
     const brukerId = req.session.userId;
 
     let count = forslag.numberLikes || 0;
-    forslag.numberLikes = count + 1;
 
     if (forslag.likes.includes(brukerId)) {
         forslag.likes.pull(brukerId);
+        forslag.numberLikes = count - 1;
     } else {
         forslag.likes.push(brukerId);
+        forslag.numberLikes = count + 1;
     }
+
     await forslag.save();
     res.status(200).redirect("/");
 });
-
 
 
  
