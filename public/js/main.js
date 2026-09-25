@@ -7,3 +7,20 @@ document.querySelectorAll('.kommenterBtn').forEach(btn => {
     post.classList.toggle('aapen', !section.hidden);
   });
 });
+
+document.querySelectorAll('.likeBtn').forEach(btn => {
+  let liked = false;
+  let count = 0;
+
+  btn.addEventListener('click', () => {
+    const countEl = btn.querySelector('.likeCount');
+    const icon = btn.querySelector('i');
+
+    liked = !liked;
+    count += liked ? 1: -1;
+    countEl.innerText = count; 
+
+    icon.classList.toggle('fa-regular');
+    icon.classList.toggle('fa-solid')
+  });
+});

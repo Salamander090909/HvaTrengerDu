@@ -1,0 +1,19 @@
+app.get("/", async (req, res) => {
+    const alleForslag = await Forslag.find()
+        .sort({ dato: -1 })
+        .populate("bruker", "alder kjønn");
+    res.render("index", { alleForslag, brukerId: req.session.userId });
+});
+
+app.post("/like/:id", async (req, res) => {
+    const forslag = await Forslag.findById(req.params.id);
+    const brukerId = req.session.userId;
+
+    if (forslag.likes.includes(brukerId)) {
+        forslag.likes.pull(brukerId);
+    } else {
+        forslag.likes.push(brukerId);
+    }
+    await forslag.save();
+    res.redirect('/');
+});
