@@ -14,6 +14,8 @@ app.use(session({
     saveUninitialized: false
 }));
  
+const { blokkerBanneord } = require("./utils/banneord");
+
 const mongodb = mongoose.connect("mongodb+srv://Salamander09:MAdWoRWLW87O7cMg@cluster0.9ajv5sh.mongodb.net/?appName=Cluster0", {dbName: "hvatrengerdu"})
  
 const Forslag = require('./models/Forslag');
@@ -81,7 +83,7 @@ app.post("/registrer", async (req, res) => {
     }
 })
  
-app.post("/", async (req, res) => {
+app.post("/", blokkerBanneord("forslag"), async (req, res) => {
     const nyttForslag = new Forslag({ 
         tekst: req.body.forslag,
         bruker: req.session.userId
@@ -89,17 +91,9 @@ app.post("/", async (req, res) => {
     await nyttForslag.save();
     res.redirect('/');
 });
+
  
-app.post("/", async (req, res) => {
-    const nyttForslag = new Forslag({ 
-        tekst: req.body.forslag,
-        bruker: req.session.userId
-    });
-    await nyttForslag.save();
-    res.redirect('/');
-});
- 
-app.post("/kommenter/:id", async (req, res) => {
+app.post("/kommenter/:id", blokkerBanneord("kommentarTekst"), async (req, res) => {
     await Forslag.updateOne(
         { _id: req.params.id },
         { $push: { kommentarer: { tekst: req.body.kommentarTekst } } }
@@ -128,6 +122,9 @@ app.post("/like", async (req, res) => {
     await forslag.save();
     res.status(200).redirect("/");
 });
+
+
+
  
 app.listen(4000, () => {
     console.log("http://localhost:4000")

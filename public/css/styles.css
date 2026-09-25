@@ -7,7 +7,7 @@
 
     --featureWidth: 20rem;
     --userTextPaddingTop: 1rem;
-    --mainFont: font-family: "Montserrat", "Gotham", Arial, sans-serif;
+    --mainFont: "Montserrat", "Gotham", Arial, sans-serif;
     --commentFont: "Montserrat", "Gotham", Arial, sans-serif;
 
 }
@@ -95,10 +95,10 @@ nav {
 }
 
 .feedFeature {
-    display: grid;
-    grid-template-columns: 8rem max-content max-content;
-    gap: 1.5rem;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
     font-size: 0.8rem;
     opacity: 0.8;
 }
@@ -160,7 +160,7 @@ form button:hover {
     scale: 1.05;
 }
 
-kommentarListe ul {
+.kommentarListe ul {
     list-style: none;
 }
 
@@ -173,7 +173,7 @@ kommentarListe ul {
     border: none;
     padding: 0.3rem 0.6rem;
     border-radius: 0.8rem;
-    font: var(--commentFont);
+    font-family: var(--commentFont);
     text-align: left;
 }
 
@@ -215,7 +215,7 @@ kommentarListe ul {
     padding: 1rem 0.8rem;
     border: 1px solid #ccc;
     border-radius: 1rem;
-    font: var(--commentFont);
+    font-family: var(--commentFont);
     width: 55%;
 }
 
@@ -225,6 +225,10 @@ kommentarListe ul {
     border-radius: 1rem;
     background: white;
     width: 40%;
+}
+
+.icon {
+    display: none;
 }
 
 
@@ -239,9 +243,35 @@ kommentarListe ul {
         width: 5rem;
     }
 
-    forslag input {
+    .forslag input {
         width: 20rem;
     }
+}
+
+@media (max-width: 1000px) {
+    nav {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .innhold {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .icon {
+        display: block;
+    }
+
+    #myLinks {
+        display: none;
+    }
+
+
+
+
 }
 
 @media (max-width: 900px) {
