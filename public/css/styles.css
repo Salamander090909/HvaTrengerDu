@@ -26,7 +26,7 @@ body {
 
 .skole {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-gap: 1rem;
 }
 
@@ -206,15 +206,17 @@ kommentarListe ul {
 
 .kommentarForm {
     display: flex;
+    justify-content: space-between;
     gap: 0.5rem;
+    width: 100%;
 }
 
 .kommentarForm input {
-    flex: 1;
-    padding: 0.6rem 0.8rem;
+    padding: 0 0.8rem;
     border: 1px solid #ccc;
     border-radius: 1rem;
     font: var(--commentFont);
+    width: 60%;
 }
 
 .kommentarForm button {
@@ -222,6 +224,7 @@ kommentarListe ul {
     border: 1px solid black;
     border-radius: 1rem;
     background: white;
+    width: 40%;
 }
 
 
