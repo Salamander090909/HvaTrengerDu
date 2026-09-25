@@ -9,7 +9,10 @@ const forslagSchema = new mongoose.Schema({
       tekst: String,
       dato: {type: Date, default: Date.now}
     }
-  ]
+  ],
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  numberLikes: {type: Number, default: 0}
 });
+
 
 module.exports = mongoose.model('Forslag', forslagSchema);

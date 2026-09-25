@@ -33,6 +33,13 @@ app.get("/", async (req, res) => {
         .populate("bruker", "alder kjønn");
     res.render("index", { alleForslag });
 });
+
+// app.get("/", async (req, res) => {
+//     const alleForslag = await Forslag.find()
+//         .sort({ dato: -1 })
+//         .populate("bruker", "alder kjønn");
+//     res.render("index", { alleForslag, brukerId: req.session.userId });
+// });
  
 app.post("/login", async (req, res) => {
     const { email, passord } = req.body;
@@ -98,9 +105,29 @@ app.post("/kommenter/:id", async (req, res) => {
         { $push: { kommentarer: { tekst: req.body.kommentarTekst } } }
     );
     res.redirect('/');
+
 });
- 
- 
+
+app.post("/like", async (req, res) => {
+    console.log(req.body);
+
+    const {like} = req.body;
+
+    const forslag = await Forslag.findById(like);
+
+    const brukerId = req.session.userId;
+
+    let count = forslag.numberLikes || 0;
+    forslag.numberLikes = count + 1;
+
+    if (forslag.likes.includes(brukerId)) {
+        forslag.likes.pull(brukerId);
+    } else {
+        forslag.likes.push(brukerId);
+    }
+    await forslag.save();
+    res.status(200).redirect("/");
+});
  
 app.listen(4000, () => {
     console.log("http://localhost:4000")
