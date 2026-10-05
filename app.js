@@ -1,8 +1,8 @@
 const express = require('express');
 const argon2 = require('argon2');
 const mongoose = require('mongoose')
-const session = require('express-session');
 const dotenv = require("dotenv").config();
+const session = require('express-session');
  
 const app = express();
 app.set("view engine", "ejs")
@@ -12,8 +12,9 @@ app.use(express.static("public"));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
 }));
+
  
 const { blokkerBanneord } = require("./utils/banneord");
 
@@ -100,11 +101,9 @@ app.post("/", blokkerBanneord("forslag"), async (req, res) => {
 
 
 app.post("/like", async (req, res) => {
-    if (!req.session.userId) return res.redirect("/login");
-
-    const {like} = req.body;
+    const { like } = req.body;
     const forslag = await Forslag.findById(like);
-    const brukerId = req.session.userId;
+    const brukerId = req.session.userId || req.sessionID;
 
     let count = forslag.numberLikes || 0;
 
