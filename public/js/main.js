@@ -26,10 +26,10 @@ document.querySelectorAll('.likeBtn').forEach(btn => {
 });
 
 function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
+  const links = document.getElementById("myLinks");
+  const btn = document.querySelector("nav .icon");
+  const open = links.style.display === "block";
+
+  links.style.display = open ? "none" : "block";
+  btn.setAttribute("aria-expanded", String(!open));
 }

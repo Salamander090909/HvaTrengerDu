@@ -232,9 +232,23 @@ form button:hover {
 
 .icon {
     display: none;
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem; 
+    font-size: 1.2rem;
+    color: #333;
+    transition: 0.3s;
 }
 
+.likeBtn {
+   border: 1px solid white; 
+   background-color: white;
+   border-radius: 5px;
+}
 
+.fa-bars span {
+    visibility: hidden;
+}
 
 @media (max-width: 1100px) {
     form {
@@ -329,4 +343,7 @@ form button:hover {
         gap: 1rem;
         width: 100%;
     }
+
+
+
 }

@@ -2,6 +2,7 @@ const express = require('express');
 const argon2 = require('argon2');
 const mongoose = require('mongoose')
 const session = require('express-session');
+const dotenv = require("dotenv").config();
  
 const app = express();
 app.set("view engine", "ejs")
@@ -9,15 +10,15 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"));
  
 app.use(session({
-    secret: "3115fdfc7d7be0638a9cc792716ca32f812f849663ff6c011b86cf432f9e48f2",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
  
 const { blokkerBanneord } = require("./utils/banneord");
 
-const mongodb = mongoose.connect("mongodb+srv://Salamander09:MAdWoRWLW87O7cMg@cluster0.9ajv5sh.mongodb.net/?appName=Cluster0", {dbName: "hvatrengerdu"})
- 
+const mongodb = mongoose.connect(process.env.MONGO_URI, { dbName: "hvatrengerdu" });
+
 const Forslag = require('./models/Forslag');
 const User = require("./models/User")
  
@@ -28,21 +29,26 @@ app.get("/login",(req, res) => {
 app.get("/registrer",(req, res) => {
     res.render("registrer")
 })
- 
+
 app.get("/", async (req, res) => {
     const alleForslag = await Forslag.find()
         .sort({ dato: -1 })
-        .populate("bruker", "alder kjønn");
+        .populate("bruker", "alder kjønn")
+        .populate("kommentarer.bruker", "alder kjønn");
     res.render("index", { alleForslag });
 });
 
-// app.get("/", async (req, res) => {
-//     const alleForslag = await Forslag.find()
-//         .sort({ dato: -1 })
-//         .populate("bruker", "alder kjønn");
-//     res.render("index", { alleForslag, brukerId: req.session.userId });
-// });
- 
+app.post("/kommenter/:id", blokkerBanneord("kommentarTekst"), async (req, res) => {
+    await Forslag.updateOne(
+        { _id: req.params.id },
+        { $push: { kommentarer: {
+            tekst: req.body.kommentarTekst,
+            bruker: req.session.userId
+        } } }
+    );
+    res.redirect('/');
+});
+
 app.post("/login", async (req, res) => {
     const { email, passord } = req.body;
  
@@ -92,17 +98,10 @@ app.post("/", blokkerBanneord("forslag"), async (req, res) => {
     res.redirect('/');
 });
 
- 
-app.post("/kommenter/:id", blokkerBanneord("kommentarTekst"), async (req, res) => {
-    await Forslag.updateOne(
-        { _id: req.params.id },
-        { $push: { kommentarer: { tekst: req.body.kommentarTekst } } }
-    );
-    res.redirect('/');
-
-});
 
 app.post("/like", async (req, res) => {
+    if (!req.session.userId) return res.redirect("/login");
+
     const {like} = req.body;
     const forslag = await Forslag.findById(like);
     const brukerId = req.session.userId;

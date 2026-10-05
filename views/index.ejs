@@ -47,7 +47,7 @@
 
                   <form action="/like" method="post">
                     
-                    <input type="submit" value="like">
+                    <input type="submit" value="like" class="likeBtn">
                     <input type="hidden" name="like" value="<%= f._id%>">
                   </form>
                   <div>
@@ -67,7 +67,7 @@
                     <li>
                       <% if (k.bruker) { %>
                         <p>
-                          <%= k.bruker.kjønn %>, <%= k.bruker.alder %>, :
+                          <%= k.bruker.kjønn %> <%= k.bruker.alder %> :
                         </p>
                         <% } else { %>
                           <p>Gjest:</p>

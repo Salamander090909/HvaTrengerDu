@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "argon2": "^0.45.1",
+    "dotenv": "^18.0.5",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
