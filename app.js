@@ -160,6 +160,6 @@ app.post("/like", async (req, res) => {
 
 
  
-app.listen(4000, () => {
-    console.log("http://localhost:4000")
-}); //vi kjører appen på port 4000
+app.listen(6003, () => {
+    console.log("http://localhost:6003")
+}); //vi kjører appen på port 6003
