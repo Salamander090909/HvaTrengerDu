@@ -1,0 +1,50 @@
+<%- include("partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <main class="innhold admin-main">
+    <header class="admin-header">
+      <p class="admin-eyebrow">Administrasjon</p>
+      <h1>Kommentarer</h1>
+      <p>Se gjennom kommentarene på forslagene. Slett kommentarer som ikke skal vises.</p>
+    </header>
+
+    <% if (alleForslag.length === 0) { %>
+      <section class="admin-empty">
+        <h2>Ingen kommentarer ennå</h2>
+        <p>Nye kommentarer vises her når de blir sendt inn.</p>
+      </section>
+    <% } %>
+
+    <div class="admin-list">
+      <% alleForslag.forEach(function(forslag) { %>
+        <section class="admin-suggestion">
+          <h2>Forslag</h2>
+          <p class="admin-suggestion-text"><%= forslag.tekst %></p>
+
+          <ul class="admin-comments">
+            <% forslag.kommentarer.forEach(function(kommentar) { %>
+              <li class="admin-comment">
+                <div class="admin-comment-content">
+                  <p class="admin-comment-author">
+                    <% if (kommentar.bruker) { %>
+                      <%= kommentar.bruker.kjønn %>, <%= kommentar.bruker.alder %>
+                    <% } else { %>
+                      Gjest
+                    <% } %>
+                    <span>· <%= new Date(kommentar.dato).toLocaleString("no-NO") %></span>
+                  </p>
+                  <p class="admin-comment-text"><%= kommentar.tekst %></p>
+                </div>
+                <form method="post" action="/admin/comments/<%= forslag._id %>/<%= kommentar._id %>/delete"
+                      onsubmit="return confirm('Er du sikker på at du vil slette denne kommentaren?');">
+                  <button class="admin-delete" type="submit">Slett kommentar</button>
+                </form>
+              </li>
+            <% }); %>
+          </ul>
+        </section>
+      <% }); %>
+    </div>
+  </main>
+</body>

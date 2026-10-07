@@ -8,10 +8,11 @@ const banneord = [
 
   // kropp og seksuelt
   "fitte", "kuk", "pikk", "pule", "rasshøl", "rasshol", "ræva", "rævpuler",
-  "hestkuk", "kødd", "pupper", "rumpe", "tits", "boobs", "sex", "knulle", "neger",
+  "hestkuk", "kødd", "pupper", "rumpe", "tits", "boobs", "sex", "knulle", "neger", "porno", "gigolo", "prostituert", "prostitusjon", 
+  "escort", "escorttjeneste", "escortservice", "escortbyrå", "sexarbeider", "sexarbeid", "sexbutikk", "sexshop", "sexbutikk", "sexbutikkene",
 
   // nedsettende om kvinner
-  "hore", "horunge", "ludder", "tispe", "hurpe",
+  "hore", "horunge", "ludder", "tispe", "hurpe", 
 
   // rasistiske
   "svarting", "svartskalle", "paki", "blatte", "jødesvin",

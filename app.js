@@ -22,6 +22,45 @@ const mongodb = mongoose.connect(process.env.MONGO_URI, { dbName: "hvatrengerdu"
 
 const Forslag = require('./models/Forslag');
 const User = require("./models/User")
+
+async function requireAdmin(req, res, next) {
+    if (!req.session.userId) {
+        return res.redirect("/login");
+    }
+
+    const bruker = await User.findById(req.session.userId);
+    if (!bruker || bruker.epost?.trim().toLowerCase() !== "monhelle@gmail.com") {
+        return res.status(403).send("Du har ikke tilgang til denne siden.");
+    }
+
+    next();
+}
+
+app.get("/admin", requireAdmin, async (req, res) => {
+    const alleForslag = await Forslag.find({ "kommentarer.0": { $exists: true } })
+        .sort({ dato: -1 })
+        .populate("kommentarer.bruker", "alder kjønn");
+
+    res.render("admin", { alleForslag });
+});
+
+app.post("/admin/comments/:forslagId/:kommentarId/delete", requireAdmin, async (req, res) => {
+    const { forslagId, kommentarId } = req.params;
+    if (!mongoose.isValidObjectId(forslagId) || !mongoose.isValidObjectId(kommentarId)) {
+        return res.status(404).send("Kommentaren ble ikke funnet.");
+    }
+
+    const resultat = await Forslag.updateOne(
+        { _id: forslagId, "kommentarer._id": kommentarId },
+        { $pull: { kommentarer: { _id: kommentarId } } }
+    );
+
+    if (resultat.matchedCount === 0) {
+        return res.status(404).send("Kommentaren ble ikke funnet.");
+    }
+
+    res.redirect("/admin");
+});
  
 app.get("/login",(req, res) => {
     res.render("login")
