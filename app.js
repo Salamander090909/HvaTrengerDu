@@ -37,11 +37,26 @@ async function requireAdmin(req, res, next) {
 }
 
 app.get("/admin", requireAdmin, async (req, res) => {
-    const alleForslag = await Forslag.find({ "kommentarer.0": { $exists: true } })
+    const alleForslag = await Forslag.find()
         .sort({ dato: -1 })
+        .populate("bruker", "alder kjønn")
         .populate("kommentarer.bruker", "alder kjønn");
 
     res.render("admin", { alleForslag });
+});
+
+app.post("/admin/posts/:forslagId/delete", requireAdmin, async (req, res) => {
+    const { forslagId } = req.params;
+    if (!mongoose.isValidObjectId(forslagId)) {
+        return res.status(404).send("Innlegget ble ikke funnet.");
+    }
+
+    const slettetForslag = await Forslag.findByIdAndDelete(forslagId);
+    if (!slettetForslag) {
+        return res.status(404).send("Innlegget ble ikke funnet.");
+    }
+
+    res.redirect("/admin");
 });
 
 app.post("/admin/comments/:forslagId/:kommentarId/delete", requireAdmin, async (req, res) => {

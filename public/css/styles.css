@@ -346,6 +346,34 @@ form button:hover {
     font-size: 1.1rem;
 }
 
+.admin-post-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-post-heading h2,
+.admin-post-heading .admin-comment-author {
+    margin-bottom: 0.25rem;
+}
+
+.admin-post-heading form {
+    flex: 0 0 auto;
+}
+
+.admin-comments-title {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+}
+
+.admin-no-comments {
+    margin: 0 0 0.75rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
 .admin-suggestion-text {
     margin: 0 0 1.25rem;
     padding: 0.9rem 1rem;

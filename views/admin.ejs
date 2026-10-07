@@ -5,23 +5,44 @@
   <main class="innhold admin-main">
     <header class="admin-header">
       <p class="admin-eyebrow">Administrasjon</p>
-      <h1>Kommentarer</h1>
-      <p>Se gjennom kommentarene på forslagene. Slett kommentarer som ikke skal vises.</p>
+      <h1>Innlegg og kommentarer</h1>
+      <p>Se gjennom innleggene og kommentarene. Slett innhold som ikke skal vises.</p>
     </header>
 
     <% if (alleForslag.length === 0) { %>
       <section class="admin-empty">
-        <h2>Ingen kommentarer ennå</h2>
-        <p>Nye kommentarer vises her når de blir sendt inn.</p>
+        <h2>Ingen innlegg ennå</h2>
+        <p>Nye innlegg vises her når de blir sendt inn.</p>
       </section>
     <% } %>
 
     <div class="admin-list">
       <% alleForslag.forEach(function(forslag) { %>
         <section class="admin-suggestion">
-          <h2>Forslag</h2>
+          <div class="admin-post-heading">
+            <div>
+              <h2>Innlegg</h2>
+              <p class="admin-comment-author">
+                <% if (forslag.bruker) { %>
+                  <%= forslag.bruker.kjønn %>, <%= forslag.bruker.alder %>
+                <% } else { %>
+                  Gjest
+                <% } %>
+                <span>· <%= new Date(forslag.dato).toLocaleString("no-NO") %></span>
+              </p>
+            </div>
+            <form method="post" action="/admin/posts/<%= forslag._id %>/delete"
+                  onsubmit="return confirm('Er du sikker på at du vil slette dette innlegget og alle kommentarene?');">
+              <button class="admin-delete" type="submit">Slett innlegg</button>
+            </form>
+          </div>
           <p class="admin-suggestion-text"><%= forslag.tekst %></p>
 
+          <% if (forslag.kommentarer.length > 0) { %>
+            <h3 class="admin-comments-title">Kommentarer</h3>
+          <% } else { %>
+            <p class="admin-no-comments">Ingen kommentarer på dette innlegget.</p>
+          <% } %>
           <ul class="admin-comments">
             <% forslag.kommentarer.forEach(function(kommentar) { %>
               <li class="admin-comment">
